@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Views
+  m_EditorClassIdentifier: 
+  m_GroupName: Views
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 942253c3452092d46a28c579be4d90f8
+  m_SerializeEntries:
+  - m_GUID: 304f6eb381f905e428070cc91c3015a5
+    m_Address: Assets/Content/Prefabs/Animals/cat.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79a87e9d066200440b7dee894965e4aa
+    m_Address: Assets/Content/Prefabs/Figures/InnerCircle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89f199951f8bad04e9ed5e2b85e77eab
+    m_Address: Assets/Content/Prefabs/Figures/InnerHex.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d823ff1260d6bf46ab3a255e1122cb0
+    m_Address: Assets/Content/Prefabs/Animals/dog.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b62c8d1fff4660d4e9d804f3b031cae0
+    m_Address: Assets/Content/Prefabs/Figures/InnerTriangle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbe6fe12b0ab3984fbe5821b540cd041
+    m_Address: Assets/Content/Prefabs/Figures/OuterCircle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4811d8a12a17e140a37725031e3c2ee
+    m_Address: Assets/Content/Prefabs/Figures/OuterTriangle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d38c474942607e94d9de4d6a3bcae593
+    m_Address: Assets/Content/Prefabs/Animals/pig.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6d9e9bebe85a96408104c529ee132a8
+    m_Address: Assets/Content/Prefabs/Figures/OuterHex.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9429a6286cf1a9442b6d43e32a1e24d5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1af3cb9b2b0fa2842b1d762fcf0cddd1, type: 2}
+    - {fileID: 11400000, guid: 2fbb4728180bbd64ba2e649da99d0e94, type: 2}

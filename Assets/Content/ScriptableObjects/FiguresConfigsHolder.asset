@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d90caedeb88034495cb3f7d1488dff, type: 3}
+  m_Name: FiguresConfigsHolder
+  m_EditorClassIdentifier: 
+  figureConfigs:
+  - _figureType: 1
+    _viewReference:
+      m_AssetGUID: c4811d8a12a17e140a37725031e3c2ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _outerFigureReference:
+      m_AssetGUID: b62c8d1fff4660d4e9d804f3b031cae0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _animalrReference:
+      m_AssetGUID: 304f6eb381f905e428070cc91c3015a5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _lineColor: {r: 1, g: 0, b: 0, a: 1}
+  - _figureType: 2
+    _viewReference:
+      m_AssetGUID: c4811d8a12a17e140a37725031e3c2ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _outerFigureReference:
+      m_AssetGUID: b62c8d1fff4660d4e9d804f3b031cae0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _animalrReference:
+      m_AssetGUID: 8d823ff1260d6bf46ab3a255e1122cb0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _lineColor: {r: 1, g: 0, b: 0, a: 1}
+  - _figureType: 3
+    _viewReference:
+      m_AssetGUID: c4811d8a12a17e140a37725031e3c2ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _outerFigureReference:
+      m_AssetGUID: b62c8d1fff4660d4e9d804f3b031cae0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _animalrReference:
+      m_AssetGUID: d38c474942607e94d9de4d6a3bcae593
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _lineColor: {r: 1, g: 0, b: 0, a: 1}
+  - _figureType: 4
+    _viewReference:
+      m_AssetGUID: bbe6fe12b0ab3984fbe5821b540cd041
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _outerFigureReference:
+      m_AssetGUID: 79a87e9d066200440b7dee894965e4aa
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _animalrReference:
+      m_AssetGUID: 304f6eb381f905e428070cc91c3015a5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _lineColor: {r: 0, g: 0.2669897, b: 1, a: 1}
+  - _figureType: 5
+    _viewReference:
+      m_AssetGUID: bbe6fe12b0ab3984fbe5821b540cd041
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _outerFigureReference:
+      m_AssetGUID: 79a87e9d066200440b7dee894965e4aa
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _animalrReference:
+      m_AssetGUID: 8d823ff1260d6bf46ab3a255e1122cb0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _lineColor: {r: 0, g: 0.2669897, b: 1, a: 1}
+  - _figureType: 6
+    _viewReference:
+      m_AssetGUID: bbe6fe12b0ab3984fbe5821b540cd041
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _outerFigureReference:
+      m_AssetGUID: 79a87e9d066200440b7dee894965e4aa
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _animalrReference:
+      m_AssetGUID: d38c474942607e94d9de4d6a3bcae593
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _lineColor: {r: 0, g: 0.2669897, b: 1, a: 1}
+  - _figureType: 7
+    _viewReference:
+      m_AssetGUID: f6d9e9bebe85a96408104c529ee132a8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _outerFigureReference:
+      m_AssetGUID: 89f199951f8bad04e9ed5e2b85e77eab
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _animalrReference:
+      m_AssetGUID: 304f6eb381f905e428070cc91c3015a5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _lineColor: {r: 0, g: 0.7075472, b: 0.09619397, a: 1}
+  - _figureType: 8
+    _viewReference:
+      m_AssetGUID: f6d9e9bebe85a96408104c529ee132a8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _outerFigureReference:
+      m_AssetGUID: 89f199951f8bad04e9ed5e2b85e77eab
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _animalrReference:
+      m_AssetGUID: 8d823ff1260d6bf46ab3a255e1122cb0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _lineColor: {r: 0, g: 0.7075472, b: 0.09619397, a: 1}
+  - _figureType: 9
+    _viewReference:
+      m_AssetGUID: f6d9e9bebe85a96408104c529ee132a8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _outerFigureReference:
+      m_AssetGUID: 89f199951f8bad04e9ed5e2b85e77eab
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _animalrReference:
+      m_AssetGUID: d38c474942607e94d9de4d6a3bcae593
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _lineColor: {r: 0, g: 0.7075472, b: 0.09619397, a: 1}
