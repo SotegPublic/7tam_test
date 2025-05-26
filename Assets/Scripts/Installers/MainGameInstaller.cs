@@ -16,7 +16,7 @@ public class MainGameInstaller : MonoInstaller
     {
         Container.Bind<GameBootstrapper>().FromInstance(_bootstrapper).AsSingle();
 
-        Container.BindInterfacesTo<InputHandler>().AsSingle();
+        Container.Bind<IPlayerInputHandler>().To<InputHandler>().AsSingle();
         Container.Bind<IGameObjectFactory>().To<GameObjectFactory>().AsSingle();
         Container.Bind<IEndGameChecker>().To<EndGameChecker>().AsSingle();
         Container.Bind<GameStatusHolder>().AsSingle();

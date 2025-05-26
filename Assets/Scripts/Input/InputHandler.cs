@@ -1,7 +1,7 @@
 using System;
 using Zenject;
 
-public class InputHandler : IDisposable, IPlayerInputHandler
+public class InputHandler : IPlayerInputHandler
 {
     private PlayerInput _playerInput;
 
@@ -11,11 +11,5 @@ public class InputHandler : IDisposable, IPlayerInputHandler
     public void Construct()
     {
         _playerInput = new PlayerInput();
-        _playerInput.Enable();
-    }
-
-    public void Dispose()
-    {
-        _playerInput.Disable();
     }
 }
