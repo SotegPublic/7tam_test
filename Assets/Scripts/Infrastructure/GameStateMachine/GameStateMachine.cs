@@ -18,6 +18,7 @@ public class GameStateMachine : IGameStateMachine, IDisposable
         _statesFactory = gamseStatesFactory;
 
         _gameStates.Add(typeof(CalculateFiguresOrderState), _statesFactory.CreateState<CalculateFiguresOrderState>());
+        _gameStates.Add(typeof(WarmUpState), _statesFactory.CreateState<WarmUpState>());
         _gameStates.Add(typeof(SpawnFiguresOnFieldState), _statesFactory.CreateState<SpawnFiguresOnFieldState>());
         _gameStates.Add(typeof(GameInProgressState), _statesFactory.CreateState<GameInProgressState>());
         _gameStates.Add(typeof(ClearState), _statesFactory.CreateState<ClearState>());
@@ -42,6 +43,10 @@ public class GameStateMachine : IGameStateMachine, IDisposable
         switch (currentStateType)
         {
             case var _ when currentStateType == typeof(CalculateFiguresOrderState):
+                _gameStateHolder.ChangeCurrentGameState(typeof(WarmUpState));
+                _gameStates[typeof(WarmUpState)].EnterState();
+                break;
+            case var _ when currentStateType == typeof(WarmUpState):
                 _gameStateHolder.ChangeCurrentGameState(typeof(SpawnFiguresOnFieldState));
                 _gameStates[typeof(SpawnFiguresOnFieldState)].EnterState();
                 break;

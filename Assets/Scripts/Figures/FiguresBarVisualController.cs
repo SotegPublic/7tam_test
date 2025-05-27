@@ -1,14 +1,17 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FiguresBarVisualController: IFiguresBarVisualController
 {
     private FiguresBarConfig _figuresBarConfig;
 
-    public FiguresBarVisualController(FiguresBarConfig figuresBarConfig)
+    private List<UniTask> tasks;
+    public FiguresBarVisualController(FiguresBarConfig figuresBarConfig, GameConfig gameConfig)
     {
         _figuresBarConfig = figuresBarConfig;
+        tasks = new List<UniTask>(gameConfig.FiguresCollectionLenth);
     }
 
     public async UniTask DrowFlyToBar(FigureView figure, Vector3 targetPosition, bool isArcLeft)
@@ -33,16 +36,14 @@ public class FiguresBarVisualController: IFiguresBarVisualController
 
     public async UniTask ScaleCollectionViews(FiguresCollectionModel collection)
     {
-        var tasks = System.Buffers.ArrayPool<UniTask>.Shared.Rent(collection.FigureViews.Count);
-
         for (int i = 0; i < collection.FigureViews.Count; i++)
         {
             var view = collection.FigureViews[i];
 
-            tasks[i] = view.transform.DOScale(Vector3.zero, _figuresBarConfig.ScaleSpeed).ToUniTask();
+            tasks.Add(view.transform.DOScale(Vector3.zero, _figuresBarConfig.ScaleSpeed).ToUniTask());
         }
         await UniTask.WhenAll(tasks);
 
-        System.Buffers.ArrayPool<UniTask>.Shared.Return(tasks);
+        tasks.Clear();
     }
 }

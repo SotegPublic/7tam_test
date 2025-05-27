@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -69,7 +70,7 @@ public class FiguresPool : IFiguresPool
             _viewsPool[type].Add(views[i]);
         }
 
-        System.Buffers.ArrayPool<UniTask<FigureView>>.Shared.Return(tasks);
+        System.Buffers.ArrayPool<UniTask<FigureView>>.Shared.Return(tasks, clearArray: true);
     }
 
     public void RemoveViewToPool(FigureView view)

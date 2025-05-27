@@ -1,53 +1,58 @@
-﻿using Cysharp.Threading.Tasks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
 public class CalculateFiguresOrderState : BaseState
 {
-    private GameConfig _gameConfig;
     private GameStatusHolder _gameStatus;
     private FiguresTypesArrayHolder _figuresTypesArrayHolder;
-    private IFiguresPool _figuresPool;
+    private IFiguresOnFieldHolder _figuresOnFieldHolder;
 
-    private List<UniTask> tasks;
-
-    public CalculateFiguresOrderState(GameConfig gameConfig, IFiguresPool figuresPool, FiguresTypesArrayHolder figuresTypesArrayHolder, GameStatusHolder gameStatus)
+    public CalculateFiguresOrderState(FiguresTypesArrayHolder figuresTypesArrayHolder, GameStatusHolder gameStatus, IFiguresOnFieldHolder figuresOnFieldHolder)
     {
-        _gameConfig = gameConfig;
-        _figuresPool = figuresPool;
         _figuresTypesArrayHolder = figuresTypesArrayHolder;
         _gameStatus = gameStatus;
-
-        tasks = new List<UniTask>(_gameConfig.FiguresTypesCountOnField);
+        _figuresOnFieldHolder = figuresOnFieldHolder;
     }
 
-    public async override void EnterState()
+    public override void EnterState()
     {
-        tasks.Clear();
-
         _figuresTypesArrayHolder.FiguresTypesArray = Enum.GetValues(typeof(FiguresTypes)).Cast<FiguresTypes>().Where(type => type != FiguresTypes.None).ToArray();
-        var types = _figuresTypesArrayHolder.FiguresTypesArray;
 
-        Shuffler.ShuffleArray(types);
+        Shuffler.ShuffleArray(_figuresTypesArrayHolder.FiguresTypesArray);
 
-        if (types.Length < _gameConfig.FiguresTypesCountOnField)
-            throw new Exception("gameConfig.FiguresTypesCountOnField value more than we have types count");
-
-        var warmUpCollectionsCount = _gameStatus.IsGameReseted ? _gameStatus.CollectionsCountWhenReset : _gameConfig.FiguresTypesCountOnField;
-
-        for (int i = 0; i < warmUpCollectionsCount; i++)
+        if(_gameStatus.IsGameReseted)
         {
-            tasks.Add(_figuresPool.WarmUpFigures(types[i], _gameConfig.FiguresCollectionLenth));
+            ChangeOrder();
         }
-
-        await UniTask.WhenAll(tasks);
 
         EndState();
     }
 
+    private void ChangeOrder()
+    {
+        var types = _figuresTypesArrayHolder.FiguresTypesArray;
+        var newOrder = new FiguresTypes[types.Length];
+        var typesInCollections = _figuresOnFieldHolder.GetCollectionsTypes();
+        
+        Array.Copy(typesInCollections, newOrder, typesInCollections.Length);
+        var currentFreeIndex = typesInCollections.Length;
+
+        var addedTypes = new HashSet<FiguresTypes>(typesInCollections);
+
+        for (int i = 0; i < types.Length; i++)
+        {
+            if (!addedTypes.Contains(types[i]))
+            {
+                newOrder[currentFreeIndex] = types[i];
+                currentFreeIndex++;
+            }
+        }
+
+        _figuresTypesArrayHolder.FiguresTypesArray = newOrder;
+    }
+
     public override void ExitState()
     {
-        tasks.Clear();
     }
 }

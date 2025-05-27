@@ -28,7 +28,7 @@ public class FiguresOnFieldHolder: IFiguresOnFieldHolder, IAddebleModelFiguresHo
         _figuresCollectionModels.Add(collectionModel);
     }
 
-    public FiguresCollectionModel GetCollectionByType(FiguresTypes type)
+    public FiguresCollectionModel GetCollectionModelByType(FiguresTypes type)
     {
         for(int i = 0; i < _figuresCollectionModels.Count; i++)
         {
@@ -37,6 +37,18 @@ public class FiguresOnFieldHolder: IFiguresOnFieldHolder, IAddebleModelFiguresHo
         }
 
         return null;
+    }
+
+    public FiguresTypes[] GetCollectionsTypes()
+    {
+        var types = new FiguresTypes[_figuresCollectionModels.Count];
+
+        for(int i = 0; i < _figuresCollectionModels.Count; i++)
+        {
+            types[i] = _figuresCollectionModels[i].FiguresType;
+        }
+
+        return types;
     }
 
     public void RemoveFiguresCollection(FiguresCollectionModel figuresCollectionModel)

@@ -38,6 +38,17 @@ public class FiguresCollectionModel: IEquatable<FiguresCollectionModel>
         _figureViews.Clear();
     }
 
+    public void RemoveNotInBarViews()
+    {
+        for(int i = _figureViews.Count - 1; i >= 0; i--)
+        {
+            if (!_figureViews[i].IsInBar)
+            {
+                _figureViews.RemoveAt(i);
+            }
+        }
+    }
+
     public bool Equals(FiguresCollectionModel other)
     {
         if (other == null)

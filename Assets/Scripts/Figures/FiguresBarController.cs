@@ -73,7 +73,7 @@ public class FiguresBarController: IFiguresBarController, IClearableFiguresBarCo
 
     private async UniTask CheckCollection(FiguresTypes type)
     {
-        var collection = _figuresOnFieldHolder.GetCollectionByType(type);
+        var collection = _figuresOnFieldHolder.GetCollectionModelByType(type);
         var inBarCount = collection.GetInBarCount();
         
         if(inBarCount == _gameConfig.FiguresCollectionLenth)

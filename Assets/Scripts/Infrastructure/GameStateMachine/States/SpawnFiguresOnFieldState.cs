@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,7 +40,9 @@ public class SpawnFiguresOnFieldState : BaseState
 
         for (int i = 0; i < countTypes; i++)
         {
-            for (int j = 0; j < _gameConfig.FiguresCollectionLenth; j++)
+            int spawnFiguresCount = GetSpawnFiguresCount(_figuresTypesArrayHolder.FiguresTypesArray[i]);
+
+            for (int j = 0; j < spawnFiguresCount; j++)
             {
                 var view = await _pool.GetFigureFromPool(_figuresTypesArrayHolder.FiguresTypesArray[i]);
                 spawnOrder.Add(view);
@@ -53,6 +56,19 @@ public class SpawnFiguresOnFieldState : BaseState
         spawnOrder.Clear();
 
         EndState();
+    }
+
+    private int GetSpawnFiguresCount(FiguresTypes figureType)
+    {
+        var spawnFiguresCount = _gameConfig.FiguresCollectionLenth;
+
+        if (_gameStatus.IsGameReseted)
+        {
+            var exsitCollection = _figuresOnFieldHolder.GetCollectionModelByType(figureType);
+            spawnFiguresCount = exsitCollection == null ? spawnFiguresCount : spawnFiguresCount - exsitCollection.GetInBarCount();
+        }
+
+        return spawnFiguresCount;
     }
 
     private async UniTask SpawnFigures()

@@ -30,7 +30,7 @@ public class MainGameInstaller : MonoInstaller
         Container.BindInterfacesTo<FiguresBarController>().AsSingle().WithArguments(_gameConfig, _barElementsTransforms, _barConfig);
         Container.Bind<FiguresTypesArrayHolder>().AsSingle();
         Container.BindInterfacesTo<FiguresOnFieldHolder>().AsSingle().WithArguments(_gameConfig);
-        Container.Bind<IFiguresBarVisualController>().To<FiguresBarVisualController>().AsSingle().WithArguments(_barConfig);
+        Container.Bind<IFiguresBarVisualController>().To<FiguresBarVisualController>().AsSingle().WithArguments(_barConfig, _gameConfig);
 
     }
 

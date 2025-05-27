@@ -23,7 +23,6 @@ public class FigureCreator : IFigureCreator, IDisposable
     public async UniTask<FigureView> CreateFigure(Vector2 position, FiguresTypes type)
     {
         var config = _figuresConfigs.GetConfig(type);
-        var tasks = System.Buffers.ArrayPool<UniTask<GameObject>>.Shared.Rent(3);
 
         if (config == null)
             throw new Exception("wrong Figure type");
@@ -42,25 +41,19 @@ public class FigureCreator : IFigureCreator, IDisposable
             });
         }
 
-        tasks[0] = GetGameObject(figureHandlers[type].ViewHandle, position);
-        tasks[1] = GetGameObject(figureHandlers[type].InnerFigureHandle, position);
-        tasks[2] = GetGameObject(figureHandlers[type].AnimalHandle, position);
+        var viewTask = GetGameObject(figureHandlers[type].ViewHandle, position);
+        var innerFigureTask = GetGameObject(figureHandlers[type].InnerFigureHandle, position);
+        var animalTask = GetGameObject(figureHandlers[type].AnimalHandle, position);
 
-        var objects = await UniTask.WhenAll(tasks);
+        (GameObject viewObject, GameObject innerObject, GameObject animalObject) = await UniTask.WhenAll(viewTask, innerFigureTask, animalTask);
 
-        var view = objects[0];
-        var outerFigure = objects[1];
-        var animalObject = objects[2];
-
-        var figureView = view.GetComponent<FigureView>();
+        var figureView = viewObject.GetComponent<FigureView>();
         figureView.SpriteRenderer.color = config.LineColor;
 
-        animalObject.transform.SetParent(outerFigure.transform);
+        animalObject.transform.SetParent(innerObject.transform);
 
-        outerFigure.transform.SetParent(figureView.ParentTransform);
-        outerFigure.transform.localPosition = Vector2.zero;
-
-        System.Buffers.ArrayPool<UniTask<GameObject>>.Shared.Return(tasks);
+        innerObject.transform.SetParent(figureView.ParentTransform);
+        innerObject.transform.localPosition = Vector2.zero;
 
         figureView.Collider2D.enabled = false;
         figureView.RigidBody2D.isKinematic = true;

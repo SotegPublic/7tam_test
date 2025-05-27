@@ -17,7 +17,8 @@ public class GameStatesInstaller : MonoInstaller
         Container.BindInterfacesTo<GameStateMachine>().AsSingle().NonLazy();
 
         //bind states
-        Container.BindInterfacesAndSelfTo<CalculateFiguresOrderState>().AsSingle().WithArguments(_gameConfig).NonLazy();
+        Container.BindInterfacesAndSelfTo<CalculateFiguresOrderState>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<WarmUpState>().AsSingle().WithArguments(_gameConfig).NonLazy();
         Container.BindInterfacesAndSelfTo<SpawnFiguresOnFieldState>().AsSingle().WithArguments(_gameConfig, _spawnPointsHolder, _spawnConfig).NonLazy();
         Container.BindInterfacesAndSelfTo<GameInProgressState>().AsSingle().WithArguments(_gameConfig, _mainCamera).NonLazy();
         Container.BindInterfacesAndSelfTo<ClearState>().AsSingle();
