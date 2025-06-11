@@ -75,9 +75,12 @@ public class FiguresPool : IFiguresPool
 
     public void RemoveViewToPool(FigureView view)
     {
+        view.ClearIce();
         view.RigidBody2D.isKinematic = true;
+        view.RigidBody2D.sharedMaterial = null;
+        view.RigidBody2D.mass = 1f;
         view.RigidBody2D.velocity = Vector2.zero;
-        view.RigidBody2D.angularVelocity = 0;
+        view.RigidBody2D.angularVelocity = 0f;
 
         view.Collider2D.enabled = false;
         view.transform.rotation = Quaternion.identity;

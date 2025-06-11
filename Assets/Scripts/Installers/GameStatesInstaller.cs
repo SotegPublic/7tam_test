@@ -3,8 +3,6 @@ using Zenject;
 
 public class GameStatesInstaller : MonoInstaller
 {
-    [SerializeField] private GameConfig _gameConfig;
-    [SerializeField] private SpawnConfig _spawnConfig;
     [SerializeField] private SpawnPointsHolder _spawnPointsHolder;
     [SerializeField] private Camera _mainCamera;
 
@@ -18,9 +16,9 @@ public class GameStatesInstaller : MonoInstaller
 
         //bind states
         Container.BindInterfacesAndSelfTo<CalculateFiguresOrderState>().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<WarmUpState>().AsSingle().WithArguments(_gameConfig).NonLazy();
-        Container.BindInterfacesAndSelfTo<SpawnFiguresOnFieldState>().AsSingle().WithArguments(_gameConfig, _spawnPointsHolder, _spawnConfig).NonLazy();
-        Container.BindInterfacesAndSelfTo<GameInProgressState>().AsSingle().WithArguments(_gameConfig, _mainCamera).NonLazy();
+        Container.BindInterfacesAndSelfTo<WarmUpState>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<SpawnFiguresOnFieldState>().AsSingle().WithArguments(_spawnPointsHolder).NonLazy();
+        Container.BindInterfacesAndSelfTo<GameInProgressState>().AsSingle().WithArguments(_mainCamera).NonLazy();
         Container.BindInterfacesAndSelfTo<ClearState>().AsSingle();
     }
 }

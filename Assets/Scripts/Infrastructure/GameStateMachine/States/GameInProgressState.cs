@@ -12,17 +12,19 @@ public class GameInProgressState : BaseState, IDisposable
     private IEndGameChecker _endGameChecker;
     private IEndGameUIController _endGameUIController;
     private IResetGameUIController _resetGameUIController;
+    private IIcyFiguresSystem _icyFiguresSystem;
     private GameStatusHolder _gameStatusHolder;
     private GameConfig _gameConfig;
+    private LayersConfig _layersConfig;
     private Camera _camera;
 
     private PlayerInput _playerInput;
-    private bool isTouchVisualAwait;
+    private bool _isTouchVisualAwait;
 
     [Inject]
     public GameInProgressState(IPlayerInputHandler inputHandler, GameConfig gameConfig, Camera camera, IFiguresBarController figuresBarController,
         IEndGameChecker endGameChecker, IEndGameUIController endGameUIController, IResetGameUIController resetGameUIController,
-        GameStatusHolder gameStatusHolder, IFiguresOnFieldHolder figuresOnFieldHolder)
+        GameStatusHolder gameStatusHolder, IFiguresOnFieldHolder figuresOnFieldHolder, IIcyFiguresSystem icyFiguresSystem, LayersConfig layersConfig)
     {
         _inputHandler = inputHandler;
         _gameConfig = gameConfig;
@@ -33,6 +35,8 @@ public class GameInProgressState : BaseState, IDisposable
         _resetGameUIController = resetGameUIController;
         _gameStatusHolder = gameStatusHolder;
         _figuresOnFieldHolder = figuresOnFieldHolder;
+        _icyFiguresSystem = icyFiguresSystem;
+        _layersConfig = layersConfig;
 
         _endGameUIController.OnEndGameButtonClick += EndState;
         _resetGameUIController.OnResetButtonClick += ResetLevel;
@@ -59,19 +63,16 @@ public class GameInProgressState : BaseState, IDisposable
         if (_gameStatusHolder.IsGameEnd)
             return;
 
-        if (isTouchVisualAwait)
+        if (_isTouchVisualAwait)
             return;
 
-        isTouchVisualAwait = true;
+        _isTouchVisualAwait = true;
 
         var cameraDistance = Mathf.Abs(_camera.transform.position.z);
         var pointerPosition = _playerInput.Player.Touch.ReadValue<Vector2>();
         var ray = _camera.ScreenPointToRay(pointerPosition);
 
-        var hit = Physics2D.GetRayIntersection(ray, cameraDistance * 2, _gameConfig.FiguresLayerMask);
-
-        //var str = hit.collider == null ? "null" : hit.collider.gameObject.name;
-        //Debug.Log(str);
+        var hit = Physics2D.GetRayIntersection(ray, cameraDistance * 2, _layersConfig.BaseMask);
 
         if (hit.collider != null)
         {
@@ -81,6 +82,8 @@ public class GameInProgressState : BaseState, IDisposable
 
             await _figuresBarController.AddFigureIntoBar(view);
 
+            _icyFiguresSystem.TryCrackIce();
+
             if (_endGameChecker.IsGameEnd(out var isWin))
             {
                 _endGameUIController.ShowEndGameUI(isWin);
@@ -89,7 +92,7 @@ public class GameInProgressState : BaseState, IDisposable
             }
         }
 
-        isTouchVisualAwait = false;
+        _isTouchVisualAwait = false;
     }
 
     private void ResetLevel()
@@ -99,7 +102,7 @@ public class GameInProgressState : BaseState, IDisposable
 
     private async UniTask ResetLevelAsync()
     {
-        await UniTask.WaitUntil(() => !isTouchVisualAwait); // await visual scenario
+        await UniTask.WaitUntil(() => !_isTouchVisualAwait); // await visual scenario
 
         _gameStatusHolder.IsGameEnd = true;
         _gameStatusHolder.IsGameReseted = true;

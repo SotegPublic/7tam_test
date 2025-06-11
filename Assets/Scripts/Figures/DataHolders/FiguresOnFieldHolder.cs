@@ -51,6 +51,18 @@ public class FiguresOnFieldHolder: IFiguresOnFieldHolder, IAddebleModelFiguresHo
         return types;
     }
 
+    public int GetFiguresCountInBar()
+    {
+        var count = 0;
+
+        for(int i = 0; i < _figuresCollectionModels.Count; i++)
+        {
+            count += _figuresCollectionModels[i].GetInBarCount();
+        }
+
+        return count;
+    }
+
     public void RemoveFiguresCollection(FiguresCollectionModel figuresCollectionModel)
     {
         figuresCollectionModel.ClearCollection();

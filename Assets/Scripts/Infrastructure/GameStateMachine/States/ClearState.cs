@@ -5,17 +5,19 @@ public class ClearState : BaseState
 {
     private IClearableFiguresOnFieldHolder _figuresOnFieldHolder;
     private IClearableFiguresBarController _figuresBarController;
+    private IChangableIcyFiguresSystem _icyFiguresSystem;
     private IFiguresPool _pool;
     private GameStatusHolder _statusHolder;
 
     [Inject]
-    public ClearState(IClearableFiguresBarController clearableFiguresBarController, IFiguresPool pool, IClearableFiguresOnFieldHolder clearableFiguresOnFieldHolder, 
-        GameStatusHolder gameStatusHolder)
+    public ClearState(IClearableFiguresBarController clearableFiguresBarController, IFiguresPool pool, IClearableFiguresOnFieldHolder clearableFiguresOnFieldHolder,
+        GameStatusHolder gameStatusHolder, IChangableIcyFiguresSystem icyFiguresSystem)
     {
         _figuresBarController = clearableFiguresBarController;
         _pool = pool;
         _figuresOnFieldHolder = clearableFiguresOnFieldHolder;
         _statusHolder = gameStatusHolder;
+        _icyFiguresSystem = icyFiguresSystem;
     }
 
     public override void EnterState()
@@ -57,6 +59,8 @@ public class ClearState : BaseState
                 collection.RemoveNotInBarViews();
             }
         }
+
+        _icyFiguresSystem.ClearCurrentCollection();
     }
 
     private void FullClear()
@@ -77,6 +81,7 @@ public class ClearState : BaseState
         }
 
         _figuresBarController.ClearBar();
+        _icyFiguresSystem.FullClear();
     }
 
     public override void ExitState()
