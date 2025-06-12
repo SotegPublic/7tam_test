@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabb3426f7006324ca843e4bdc7e0407, type: 3}
   m_Name: FiguresBarConfig
   m_EditorClassIdentifier: 
-  _barScaleForFigureModifier: 0.75
+  _barScaleForFigureModifier: 1
   _flyTimeToBar: 0.5
   _flyArcHeight: 0.8
   _scaleSpeed: 0.4
